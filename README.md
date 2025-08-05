@@ -1,6 +1,8 @@
 # Superschedules IAC
 
-This repository contains Terraform configuration for the Superschedules project. The Terraform code lives under the `terraform/` directory and is organized into environments for development and production. The development configuration installs required packages, clones several Git repositories, and performs basic setup for each project.
+This repository contains Terraform configuration for the Superschedules project. The Terraform code lives under the `terraform/`
+directory and is organized into environments for development and production. The development configuration installs required packages,
+clones several Git repositories via separate setup scripts, and begins provisioning an AWS EC2 instance for the dev environment.
 
 ## Usage
 
@@ -17,13 +19,13 @@ terraform apply
 Terraform runs two resources:
 
 - **setup_once** updates apt package information and installs base packages: `rake`, `git`, `python3-pip`, `python3-venv`, `curl`, and `build-essential`. This runs only once unless the resource is tainted.
-- **setup_environment** runs on every apply. It verifies that your SSH key can authenticate with GitHub, clones or updates repositories, installs Node.js 20 via NVM, and installs frontend dependencies.
+- **setup_environment** runs on every apply. It verifies that your SSH key can authenticate with GitHub and delegates repository setup to scripts in `scripts/`.
 
-The following repositories are cloned to your home directory using SSH:
+The following setup scripts under `terraform/dev/scripts` clone or update repositories and perform per-project initialization:
 
-- [dotfiles-1](https://github.com/gkirkpatrick/dotfiles-1) and run `rake install` within it.
-- [superschedules](https://github.com/gkirkpatrick/superschedules), create a `schedules_dev` virtual environment, and install dependencies from `requirements.txt`.
-- [superschedules_IAC](https://github.com/gkirkpatrick/superschedules_IAC).
-- [superschedules_frontend](https://github.com/gkirkpatrick/superschedules_frontend) and install npm dependencies.
+- `setup_dotfiles.sh` for [dotfiles-1](https://github.com/gkirkpatrick/dotfiles-1).
+- `setup_superschedules.sh` for [superschedules](https://github.com/gkirkpatrick/superschedules) and its Python virtual environment.
+- `setup_superschedules_IAC.sh` for [superschedules_IAC](https://github.com/gkirkpatrick/superschedules_IAC).
+- `setup_superschedules_frontend.sh` for [superschedules_frontend](https://github.com/gkirkpatrick/superschedules_frontend), including Node.js 20 via NVM and npm dependencies.
 
-Each repository is cloned if it does not already exist. If it is already present, the configuration will run `git pull` to update it before performing the setup steps.
+An `aws_instance` resource named `dev` has been added as a starting point for hosting the development environment on AWS. Provide the `ssh_key_name` variable to supply your existing key pair.
