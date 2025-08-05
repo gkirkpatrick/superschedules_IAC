@@ -4,7 +4,7 @@ This repository contains Terraform configuration for setting up the local develo
 
 ## Usage
 
-1. Ensure [Terraform](https://www.terraform.io/) is installed locally.
+1. Ensure [Terraform](https://developer.hashicorp.com/terraform/install) is installed locally.
 2. Initialize and apply the configuration:
 
 ```sh
