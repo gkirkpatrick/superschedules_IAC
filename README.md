@@ -33,5 +33,6 @@ The following setup scripts under `terraform/dev/scripts` clone or update reposi
 - `setup_superschedules.sh` for [superschedules](https://github.com/gkirkpatrick/superschedules) and its Python virtual environment.
 - `setup_superschedules_IAC.sh` for [superschedules_IAC](https://github.com/gkirkpatrick/superschedules_IAC).
 - `setup_superschedules_frontend.sh` for [superschedules_frontend](https://github.com/gkirkpatrick/superschedules_frontend), including Node.js 20 via NVM and npm dependencies.
+- `setup_superschedules_collector.sh` for [superschedules_collector](https://github.com/gkirkpatrick/superschedules_collector) and its Python virtual environment.
 
 An `aws_instance` resource named `dev` and a similar `prod` instance have been added as starting points for hosting the environments on AWS. Provide the `ssh_key_name` variable to supply your existing key pair.

@@ -25,6 +25,7 @@ ${path.module}/scripts/setup_dotfiles.sh
 ${path.module}/scripts/setup_superschedules.sh
 ${path.module}/scripts/setup_superschedules_IAC.sh
 ${path.module}/scripts/setup_superschedules_frontend.sh
+${path.module}/scripts/setup_superschedules_collector.sh
 EOT
     interpreter = ["/bin/bash", "-c"]
   }
