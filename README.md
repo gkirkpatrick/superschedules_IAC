@@ -24,7 +24,7 @@ make prod-deploy
 
 The development configuration uses two resources:
 
-- **setup_once** updates apt package information and installs base packages: `rake`, `git`, `python3-pip`, `python3-venv`, `curl`, and `build-essential`. This runs only once unless the resource is tainted.
+- **setup_once** updates apt package information and installs base packages: `git`, `python3-pip`, `python3-venv`, `curl`, and `build-essential`. This runs only once unless the resource is tainted.
 - **setup_environment** runs on every apply. It verifies that your SSH key can authenticate with GitHub and delegates repository setup to scripts in `scripts/`.
 
 The following setup scripts under `terraform/dev/scripts` clone or update repositories and perform per-project initialization:
