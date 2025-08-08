@@ -13,10 +13,10 @@ if [[ "$(uname)" == "Darwin" ]]; then
     eval "$($(test -x /opt/homebrew/bin/brew && echo /opt/homebrew/bin/brew || echo /usr/local/bin/brew) shellenv)"
   fi
   brew update
-  brew install git curl rake python
+  brew install git curl python
 else
   sudo apt-get update
-  sudo apt-get install -y rake git python3-pip python3-venv curl build-essential
+  sudo apt-get install -y git python3-pip python3-venv curl build-essential
 fi
 EOT
     interpreter = ["/bin/bash", "-c"]
