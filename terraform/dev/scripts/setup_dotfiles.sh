@@ -6,4 +6,4 @@ if [ ! -d "$REPO_DIR" ]; then
 else
   (cd "$REPO_DIR" && git pull)
 fi
-(cd "$REPO_DIR" && rake install)
+(cd "$REPO_DIR" && ./install.sh)
