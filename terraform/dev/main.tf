@@ -5,8 +5,19 @@ terraform {
 resource "null_resource" "setup_once" {
   provisioner "local-exec" {
     command     = <<EOT
-sudo apt-get update
-sudo apt-get install -y rake git python3-pip python3-venv curl build-essential
+if [[ "$(uname)" == "Darwin" ]]; then
+  # Ensure Homebrew is installed
+  if ! command -v brew >/dev/null 2>&1; then
+    echo "Installing Homebrew" >&2
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+    eval "$($(test -x /opt/homebrew/bin/brew && echo /opt/homebrew/bin/brew || echo /usr/local/bin/brew) shellenv)"
+  fi
+  brew update
+  brew install git curl rake python
+else
+  sudo apt-get update
+  sudo apt-get install -y rake git python3-pip python3-venv curl build-essential
+fi
 EOT
     interpreter = ["/bin/bash", "-c"]
   }
