@@ -11,4 +11,7 @@ if [ ! -d "$REPO_DIR/schedules_dev" ]; then
 fi
 source "$REPO_DIR/schedules_dev/bin/activate"
 pip install -r "$REPO_DIR/requirements.txt"
+
+# Run database migrations to keep the schema up to date
+python "$REPO_DIR/manage.py" migrate
 deactivate
