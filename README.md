@@ -27,6 +27,8 @@ The development configuration uses two resources:
 - **setup_once** updates apt package information and installs base packages: `git`, `python3-pip`, `python3-venv`, `curl`, and `build-essential`. This runs only once unless the resource is tainted.
 - **setup_environment** runs on every apply. It verifies that your SSH key can authenticate with GitHub and delegates repository setup to scripts in `scripts/`.
 
+When run locally, the configuration also installs [Ollama](https://ollama.com) and pulls the `gemma2:latest` model.
+
 The following setup scripts under `terraform/dev/scripts` clone or update repositories and perform per-project initialization:
 
 - `setup_dotfiles.sh` for [dotfiles-1](https://github.com/gkirkpatrick/dotfiles-1).
