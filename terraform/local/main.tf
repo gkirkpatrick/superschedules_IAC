@@ -18,6 +18,10 @@ else
   sudo apt-get update
   sudo apt-get install -y git python3-pip python3-venv curl build-essential
 fi
+
+# Install Ollama and the Gemma2 model
+curl -fsSL https://ollama.com/install.sh | sh
+ollama pull gemma2
 EOT
     interpreter = ["/bin/bash", "-c"]
   }
