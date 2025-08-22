@@ -19,9 +19,19 @@ else
   sudo apt-get install -y git python3-pip python3-venv curl build-essential
 fi
 
-  # Install Ollama and the Gemma2 model (gemma2:latest)
-  curl -fsSL https://ollama.com/install.sh | sh
-  ollama pull gemma2:latest
+  # Install Ollama if not already installed
+  if ! command -v ollama >/dev/null 2>&1; then
+    curl -fsSL https://ollama.com/install.sh | sh
+  fi
+
+  # Show existing Ollama models
+  echo "Existing Ollama models:"
+  ollama list || true
+
+  # Download Gemma2 model only if missing
+  if ! ollama list 2>/dev/null | grep -q '^gemma2'; then
+    ollama pull gemma2:latest
+  fi
 EOT
     interpreter = ["/bin/bash", "-c"]
   }
