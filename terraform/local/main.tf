@@ -36,7 +36,9 @@ if ! ssh -o StrictHostKeyChecking=no -o BatchMode=yes -T git@github.com 2>&1 | g
   exit 1
 fi
 
-${path.module}/../dev/scripts/setup_dotfiles.sh
+%{if var.install_dotfiles}
+${path.module}/../dev/scripts/setup_dotfiles.sh --install-dot-files
+%{endif}
 ${path.module}/../dev/scripts/setup_superschedules.sh
 ${path.module}/../dev/scripts/setup_superschedules_IAC.sh
 ${path.module}/../dev/scripts/setup_superschedules_frontend.sh
