@@ -13,10 +13,27 @@ if [[ "$(uname)" == "Darwin" ]]; then
     eval "$($(test -x /opt/homebrew/bin/brew && echo /opt/homebrew/bin/brew || echo /usr/local/bin/brew) shellenv)"
   fi
   brew update
-  brew install git curl python
+  brew install git curl python postgresql
+  brew services start postgresql
+  
+  # Create database and user for superschedules
+  createdb superschedules 2>/dev/null || true
+  createuser superschedules 2>/dev/null || true
 else
   sudo apt-get update
-  sudo apt-get install -y git python3-pip python3-venv python-is-python3 curl build-essential
+  sudo apt-get install -y git python3-pip python3-venv python-is-python3 curl build-essential postgresql postgresql-contrib postgresql-16-pgvector
+  sudo systemctl start postgresql
+  sudo systemctl enable postgresql
+  
+  # Create database and user for superschedules
+  sudo -u postgres createdb superschedules 2>/dev/null || true
+  sudo -u postgres createuser --superuser $USER 2>/dev/null || true
+  sudo -u postgres createuser superschedules 2>/dev/null || true
+  sudo -u postgres psql -c "ALTER USER superschedules CREATEDB;" 2>/dev/null || true
+  
+  # Install pgvector extension in template databases so it's available for all new databases
+  sudo -u postgres psql -d template1 -c "CREATE EXTENSION IF NOT EXISTS vector;" 2>/dev/null || true
+  sudo -u postgres psql -d superschedules -c "CREATE EXTENSION IF NOT EXISTS vector;" 2>/dev/null || true
 fi
 
   # Install Ollama if not already installed
