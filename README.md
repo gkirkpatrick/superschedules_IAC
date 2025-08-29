@@ -36,5 +36,6 @@ The following setup scripts under `terraform/dev/scripts` clone or update reposi
 - `setup_superschedules_IAC.sh` for [superschedules_IAC](https://github.com/gkirkpatrick/superschedules_IAC).
 - `setup_superschedules_frontend.sh` for [superschedules_frontend](https://github.com/gkirkpatrick/superschedules_frontend), which runs a cross-platform bootstrap script to install Node.js 20, pin `pnpm`, and install dependencies without touching user shell configuration.
 - `setup_superschedules_collector.sh` for [superschedules_collector](https://github.com/gkirkpatrick/superschedules_collector) and its Python virtual environment.
+- `setup_superschedules_navigator.sh` for [superschedules_navigator](https://github.com/gkirkpatrick/superschedules_navigator) and its Python virtual environment.
 
 An `aws_instance` resource named `dev` and a similar `prod` instance have been added as starting points for hosting the environments on AWS. Provide the `ssh_key_name` variable to supply your existing key pair.

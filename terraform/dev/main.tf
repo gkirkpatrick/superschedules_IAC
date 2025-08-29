@@ -16,7 +16,7 @@ if [[ "$(uname)" == "Darwin" ]]; then
   brew install git curl python
 else
   sudo apt-get update
-  sudo apt-get install -y git python3-pip python3-venv curl build-essential
+  sudo apt-get install -y git python3-pip python3-venv python-is-python3 curl build-essential
 fi
 EOT
     interpreter = ["/bin/bash", "-c"]
@@ -37,6 +37,7 @@ ${path.module}/scripts/setup_superschedules.sh
 ${path.module}/scripts/setup_superschedules_IAC.sh
 ${path.module}/scripts/setup_superschedules_frontend.sh
 ${path.module}/scripts/setup_superschedules_collector.sh
+${path.module}/scripts/setup_superschedules_navigator.sh
 EOT
     interpreter = ["/bin/bash", "-c"]
   }

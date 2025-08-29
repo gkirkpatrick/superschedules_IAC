@@ -6,10 +6,10 @@ if [ ! -d "$REPO_DIR" ]; then
 else
   (cd "$REPO_DIR" && git pull)
 fi
-if [ ! -d "$REPO_DIR/schedules_dev" ]; then
-  python3 -m venv "$REPO_DIR/schedules_dev"
+if [ ! -d "$REPO_DIR/.venv" ]; then
+  python -m venv "$REPO_DIR/.venv" --prompt "superschedules"
 fi
-source "$REPO_DIR/schedules_dev/bin/activate"
+source "$REPO_DIR/.venv/bin/activate"
 pip install -r "$REPO_DIR/requirements.txt"
 
 # Run database migrations to keep the schema up to date
