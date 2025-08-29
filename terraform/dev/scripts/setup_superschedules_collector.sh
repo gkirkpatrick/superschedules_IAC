@@ -7,7 +7,7 @@ else
   (cd "$REPO_DIR" && git pull)
 fi
 if [ ! -d "$REPO_DIR/.venv" ]; then
-  python -m venv "$REPO_DIR/.venv" --prompt "superschedules_collector"
+  python3 -m venv "$REPO_DIR/.venv" --prompt "superschedules_collector"
 fi
 source "$REPO_DIR/.venv/bin/activate"
 pip install -r "$REPO_DIR/requirements.txt"
