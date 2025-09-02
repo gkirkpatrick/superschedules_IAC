@@ -9,14 +9,21 @@ instance for the dev environment.
 
 1. Ensure [Terraform](https://developer.hashicorp.com/terraform/install) is installed locally.
 2. Ensure you have an SSH key configured with access to GitHub.
-3. Choose one of the following targets:
+3. (Optional) Set `INSTALL_DOTFILES=true` to clone and install your dotfiles.
+4. Choose one of the following targets:
 
 ```sh
 # Provision a dev EC2 instance and run setup scripts
 make dev-ec2
 
+# Provision a dev EC2 instance and install dotfiles
+make dev-ec2 INSTALL_DOTFILES=true
+
 # Run setup scripts locally without creating an EC2 instance
 make dev-local
+
+# Run setup scripts locally and install dotfiles
+make dev-local INSTALL_DOTFILES=true
 
 # Provision the production EC2 instance
 make prod-deploy

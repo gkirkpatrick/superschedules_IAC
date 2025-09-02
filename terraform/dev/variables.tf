@@ -14,3 +14,9 @@ variable "ssh_key_name" {
   description = "Name of the existing AWS key pair for SSH access"
   type        = string
 }
+
+variable "install_dotfiles" {
+  description = "Set to true to install developer dotfiles"
+  type        = bool
+  default     = false
+}
